@@ -78,7 +78,7 @@ if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'InterfaceTestPlatform',  # 新建数据库名
+            'NAME': 'ceshi',  # 新建数据库名
             'USER': 'root',  # 数据库登录名
             'PASSWORD': 'shadow@123..',  # 数据库登录密码
             'HOST': '47.98.153.173',  # 数据库所在服务器ip地址

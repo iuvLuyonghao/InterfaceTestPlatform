@@ -8,6 +8,12 @@
 </head>
 <body>
 这是首页
-
+    <div>
+        <form action="/" method="POST">
+        {% csrf_token %}
+    环境配置: <input type="text" name="eir" placeholder="环境配置"> <br>
+    <input type="submit" value="提交">
+   </form>
+    </div>
 </body>
 </html>

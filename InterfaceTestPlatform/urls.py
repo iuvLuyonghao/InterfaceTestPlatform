@@ -20,8 +20,9 @@ from  AutoTest.views import index,register
 from  AutoTest.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index),
+    # path('',index),
     path(r'login/',login),
-    path(r'register/',register)
+    path(r'register/',register),
+path(r'base/',index)
 
 ]

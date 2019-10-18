@@ -26,6 +26,7 @@ class Company(models.Model):
     create_time = models.DateTimeField('创建时间', auto_now_add=True)
     update_time = models.DateTimeField('更新时间', auto_now=True)
 
+
 class Progect(models.Model):
     class Meta:
         verbose_name = "项目表"
@@ -43,3 +44,10 @@ class Config(models.Model):
     style=models.CharField("配置类型",max_length=10)
     create_time = models.DateTimeField('创建时间', auto_now_add=True)
     update_time = models.DateTimeField('更新时间', auto_now=True)
+
+class Report(models.Model):
+    verbose_name = "测试报告表"
+    db_table = 'Report'
+reportname = models.CharField("报告名称", max_length=10)
+create_time = models.DateTimeField('创建时间', auto_now_add=True)
+update_time = models.DateTimeField('更新时间', auto_now=True)

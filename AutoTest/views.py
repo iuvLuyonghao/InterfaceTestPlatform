@@ -4,7 +4,9 @@ from django.shortcuts import render
 from  django.http import HttpResponse
 from  django.shortcuts import render
 from  .models import  User
+from  AutoTest.controls import  sqlcontrol
 
+sqlcon=sqlcontrol.sqlcontrol()
 #首页
 def index(request):
     # 判断是否是post请求
@@ -25,7 +27,7 @@ def index(request):
         # return render(request, template_name='index.html', context={
         #     'users': users
         # })
-    return render(request, 'index.html')
+    return render(request, 'base.html')
 #注册接口
 def register(request):
     empty_data=False
@@ -37,20 +39,14 @@ def register(request):
         repassword = request.POST.get('repassword')
         phone = request.POST.get('phone')
         email = request.POST.get('email')
-        userinfo_list=[company,realname,username,password,phone,email]
-        for date in  userinfo_list:
-            if date is None or date =='':
-                empty_data=True
-        if empty_data == True:
-            print('请检查全部必填项')
-            return render(request, "result.html",context={"msg":"请填写全部必填项"})
-        elif password != repassword:
+        if password != repassword:
             print("请验证两次密码是否一致")
             return render(request, "result.html",context={"msg":"请验证两次密码是否一致"})
         else:
             #入库
-            userinfo=User(company=company,realname=realname,username=username,password=password,phone=phone,email=email)
-            userinfo.save()
+            userinfo_list = {'company': company, 'realname': realname, 'username': username, 'password': password, 'phone': phone,
+                             email: email}
+            sqlcon.register(userinfo_list)
             return render(request,'result.html',context={"msg":"注册成功"})
     elif request.method == 'GET':
         return render(request,"register.html")
@@ -60,7 +56,10 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        users=User.objects.all()
+        try:
+            users=User.objects.all()
+        except Exception as e:
+            print(e)
         for user in users:
             if user.username==username and user.password==password:
                 print("登录成功")
@@ -71,4 +70,10 @@ def login(request):
     elif request.method== 'GET':
         return render(request,'login.html')
 
+
+def eircon(request):
+    if request.method=='POST':
+        print()
+    elif request.method=='GET':
+        return render(request,'index.html')
 
