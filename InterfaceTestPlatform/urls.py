@@ -24,6 +24,6 @@ urlpatterns = [
     path(r'case_setting/',case_setting),
     path(r'model_setting/',model_setting),
     path('system_setting/',system_setting),
-    path('eir_setting/',eir_setting)
-
+    path('eir_setting/',eir_setting),
+    path('run_case/',run_case)
 ]

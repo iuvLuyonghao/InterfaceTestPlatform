@@ -15,33 +15,6 @@
         <input type="text" placeholder="请求方式..." name="requestmethod">
         <input type="text" placeholder="请求参数..." name="requestdata">
         <button id="addbutton">确认添加</button>
-        <script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
-        <script>
-            $(document).ready(function(){
-                $("#addbutton").click(function() {
-                    alert("提交");
-                    $.ajax({
-                        url: "/case_setting/",
-                        async: false,//这一步是非常重要的，作用是设置为同步执行
-                        type: "POST",
-                        data: {
-                            "project": $("input[name=project]").val(),
-                            "eir":$("input[name=eir]").val(),
-                            "model":$("input[name=model]").val(),
-                            "casename":$("input[name=casename]").val(),
-                            "interface":$("input[name=interface]").val(),
-                            "requestmethod":$("input[name=requestmethod]").val(),
-                            "requestdata":$("input[name=requestdata]").val()
-                        },
-                        dataType: "json",
-                        success: function (data) {
-                            alert("success");
-                        }
-                    });
-                    return false
-                })
-            })
-        </script>
     </form>
 </div>
 <div class="form_table">
@@ -74,11 +47,53 @@
             <td>{{data.parameter}}</td>
             <td>{{data.create_time}}</td>
             <td>{{data.update_time}}</td>
+            <td><button class="runcase" id="runcase{{data.id}}" value={{data.id}}>运行</button></td>
         </tr>
         {% endfor %}
-
         </tbody>
     </table>
-
 </div>
+<script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+<script>
+    $(document).ready(function(){
+        $("#addbutton").click(function() {
+            alert("提交");
+            $.ajax({
+                url: "/case_setting/",
+                async: false,//这一步是非常重要的，作用是设置为同步执行
+                type: "POST",
+                data: {
+                    "project": $("input[name=project]").val(),
+                    "eir":$("input[name=eir]").val(),
+                    "model":$("input[name=model]").val(),
+                    "casename":$("input[name=casename]").val(),
+                    "interface":$("input[name=interface]").val(),
+                    "requestmethod":$("input[name=requestmethod]").val(),
+                    "requestdata":$("input[name=requestdata]").val()
+                },
+                dataType: "json",
+                success: function (data) {
+                    alert("success");
+                }
+            });
+            return false
+        })
+    })
+    $(".runcase").click(function() {
+        alert($(this).attr('value'))
+        $.ajax({
+            url: "/run_case/",
+            async: false,
+            type: "POST",
+            data: {
+                "caseid":$(this).attr('value')
+            },
+            dataType: "json",
+            success: function (data) {
+                alert("success");
+            }
+        })
+        return false
+    })
+</script>
 {%endblock info%}

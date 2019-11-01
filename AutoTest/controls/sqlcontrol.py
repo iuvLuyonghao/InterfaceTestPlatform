@@ -10,8 +10,9 @@ from django.db import connection
 import json
 class sqlcontrol:
 
-    def __init__(self,datainfo_dict=None):
+    def __init__(self,datainfo_dict=None,sql=None):
         self.datainfo_dict=datainfo_dict
+        self.sql=sql
     def insert_eir(self):
         environmentinfo=environment(host_name=self.datainfo_dict['eirname'],host_v=self.datainfo_dict['eirurl'])
         environmentinfo.save()
@@ -53,5 +54,11 @@ class sqlcontrol:
         datas=testcase.objects.order_by("-id")
         return datas
 
+    def run_sql(self):
+        cursor=connection.cursor()
+        cursor.execute(self)
+        row=cursor.fetchone()
+        # row=testcase.objects.raw(self)
+        return row
 if __name__=='__main__':
     sqlcontrol().select_eir()

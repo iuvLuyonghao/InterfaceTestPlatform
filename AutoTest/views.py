@@ -77,4 +77,17 @@ def system_setting(request):
 
 
 
+#运行用例
+def run_case(request):
+    if request.method=='POST':
+        print(request.POST.get('caseid',''))
+        caseid=request.POST.get('caseid','')
+        datas=sqlcontrol.run_sql('select * from testcase where  id = %s' %caseid)
+        print(datas)
+        return render(request, 'case_setting.html')
+    elif request.method=='GET':
+        datas=sqlcontrol().select_case()
+        return render(request, 'case_setting.html', {"datas":datas})
+
+
 

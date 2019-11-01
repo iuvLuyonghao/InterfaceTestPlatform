@@ -2,28 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dc0f6df-a5cc-426a-8ea7-15de0c6059cc" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/AutoTest/templates/case_setting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutoTest/templates/eir_setting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutoTest/templates/model_setting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutoTest/templates/project_setting.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutoTest/templates/system_setting.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AutoTest/controls/requests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoTest/controls/sqlcontrol.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoTest/controls/sqlcontrol.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoTest/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/js/commons.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/js/custom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/js/jquery.sticky.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/js/owl.carousel.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/static/js/wow.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/templates/add_config.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/templates/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/templates/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/templates/register.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutoTest/templates/result.html" beforeDir="false" afterPath="$PROJECT_DIR$/AutoTest/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AutoTest/templates/case_setting.html" beforeDir="false" afterPath="$PROJECT_DIR$/AutoTest/templates/case_setting.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoTest/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoTest/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/InterfaceTestPlatform/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/InterfaceTestPlatform/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/InterfaceTestPlatform/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/InterfaceTestPlatform/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -141,7 +124,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571280088044</updated>
-      <workItem from="1572339717600" duration="57524000" />
+      <workItem from="1572339717600" duration="65928000" />
     </task>
     <servers />
   </component>
@@ -159,9 +142,25 @@
       </map>
     </option>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/AutoTest/controls/sqlcontrol.py</url>
+          <line>60</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/AutoTest/controls/sqlcontrol.py</url>
+          <line>56</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/InterfaceTestPlatform$sqlcontrol.coverage" NAME="sqlcontrol Coverage Results" MODIFIED="1572503561260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/AutoTest/controls" />
-    <SUITE FILE_PATH="coverage/InterfaceTestPlatform$manage.coverage" NAME="manage Coverage Results" MODIFIED="1572597541348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/InterfaceTestPlatform$manage.coverage" NAME="manage Coverage Results" MODIFIED="1572606355910" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
