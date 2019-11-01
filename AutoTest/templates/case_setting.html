@@ -1,0 +1,84 @@
+{% extends "base.html"%}
+{% load static %}
+{%block info%}
+<div class="header_text">
+    用例配置
+</div>
+<div class="form_eir">
+    <form class="form_css">
+        {% csrf_token %}
+        <input type="text" placeholder="项目..." name="project">
+        <input type="text" placeholder="环境..." name="eir">
+        <input type="text" placeholder="模块..." name="model">
+        <input type="text" placeholder="用例名称..." name="casename">
+        <input type="text" placeholder="接口地址..." name="interface">
+        <input type="text" placeholder="请求方式..." name="requestmethod">
+        <input type="text" placeholder="请求参数..." name="requestdata">
+        <button id="addbutton">确认添加</button>
+        <script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+        <script>
+            $(document).ready(function(){
+                $("#addbutton").click(function() {
+                    alert("提交");
+                    $.ajax({
+                        url: "/case_setting/",
+                        async: false,//这一步是非常重要的，作用是设置为同步执行
+                        type: "POST",
+                        data: {
+                            "project": $("input[name=project]").val(),
+                            "eir":$("input[name=eir]").val(),
+                            "model":$("input[name=model]").val(),
+                            "casename":$("input[name=casename]").val(),
+                            "interface":$("input[name=interface]").val(),
+                            "requestmethod":$("input[name=requestmethod]").val(),
+                            "requestdata":$("input[name=requestdata]").val()
+                        },
+                        dataType: "json",
+                        success: function (data) {
+                            alert("success");
+                        }
+                    });
+                    return false
+                })
+            })
+        </script>
+    </form>
+</div>
+<div class="form_table">
+    <table>
+        <thead>
+        <tr>
+            <th>用例ID</th>
+            <th>所属项目</th>
+            <th>所属环境</th>
+            <th>所属模块</th>
+            <th>用例名称</th>
+            <th>接口地址</th>
+            <th>请求方式</th>
+            <th>请求参数</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for data in datas %}
+        <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.p_id}}</td>
+            <td>{{data.e_id}}</td>
+            <td>{{data.m_id}}</td>
+            <td>{{data.case_name}}</td>
+            <td>{{data.interface}}</td>
+            <td>{{data.request_mode}}</td>
+            <td>{{data.parameter}}</td>
+            <td>{{data.create_time}}</td>
+            <td>{{data.update_time}}</td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+{%endblock info%}

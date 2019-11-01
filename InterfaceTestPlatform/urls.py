@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
-from  AutoTest.views import index,register
 from  AutoTest.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('',index),
-    path(r'login/',login),
-    path(r'register/',register),
-path(r'base/',index)
+    path(r'index/',index),
+    path(r'project_setting/',project_setting),
+    path(r'case_setting/',case_setting),
+    path(r'model_setting/',model_setting),
+    path('system_setting/',system_setting),
+    path('eir_setting/',eir_setting)
 
 ]

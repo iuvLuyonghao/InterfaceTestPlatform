@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -136,9 +136,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
-SITE_ROOT = os.path.abspath(os.path.join(SITE_ROOT, '../'))
-STATIC_ROOT = os.path.join(SITE_ROOT, 'collectedstatic')
+# SITE_ROOT = os.path.dirname(os.path.abspath(__file__))
+# SITE_ROOT = os.path.abspath(os.path.join(SITE_ROOT, '../'))
+# STATIC_ROOT = os.path.join(SITE_ROOT, 'collectedstatic')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
+    ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
+    ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+)
+
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

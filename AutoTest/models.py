@@ -1,53 +1,54 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
-
-#用户表
-class User(models.Model):
-    class Meta:
-        verbose_name = "用户信息表"
-        db_table = 'User'
-    company = models.CharField("",max_length=80)
-    realname = models.CharField("真实姓名",max_length=25)
-    username = models.CharField("用户名",max_length=25)
-    password = models.CharField("密码",max_length=18)
-    phone = models.CharField("手机号",max_length=25)
-    email = models.EmailField("邮箱",max_length=25)
-    jurisdiction = models.CharField("权限",max_length=10)
-    create_time = models.DateTimeField('创建时间', auto_now_add=True)
-    update_time = models.DateTimeField('更新时间', auto_now=True)
-
-class Company(models.Model):
-    class Meta:
-        verbose_name = "公司信息表"
-        db_table = 'Company'
-    companyname=models.CharField("公司名称",max_length=25)
-    create_time = models.DateTimeField('创建时间', auto_now_add=True)
-    update_time = models.DateTimeField('更新时间', auto_now=True)
-
-
-class Progect(models.Model):
+class project(models.Model):
     class Meta:
         verbose_name = "项目表"
-        db_table = 'Progect'
-    prpject=models.CharField("项目名称",max_length=25)
+        db_table = 'project'
+    project_name=models.CharField('项目名称',max_length=80)
+    create_time = models.DateTimeField('创建时间', auto_now_add=True)
+    update_time = models.DateTimeField('更新时间', auto_now=True)
+#项目里面配环境
+
+class environment(models.Model):
+    class Meta:
+        verbose_name = "环境表"
+        db_table = 'environment'
+    host_name=models.CharField('环境名称',max_length=80)
+    host_v=models.CharField('地址',max_length=80)
+    create_time = models.DateTimeField('创建时间', auto_now_add=True)
+    update_time = models.DateTimeField('更新时间', auto_now=True)
+#加项目id
+
+class modset(models.Model):
+    class Meta:
+        verbose_name = "模块配置表"
+        db_table = 'modset'
+    mod_name=models.CharField('模块名称',max_length=80)
     create_time = models.DateTimeField('创建时间', auto_now_add=True)
     update_time = models.DateTimeField('更新时间', auto_now=True)
 
 
+class testcase(models.Model):
+    class Meta:
+        verbose_name = "测试用例表"
+        db_table = 'testcase'
+    e_id=models.IntegerField("环境id")
+    p_id=models.IntegerField("项目id")
+    m_id=models.IntegerField("模块id")
+    case_name=models.CharField('用例名称',max_length=100)
+    interface=models.CharField('接口地址',max_length=100)
+    request_mode=models.CharField('请求方式',max_length=100)
+    parameter=models.CharField('请求参数',max_length=100)
+    create_time = models.DateTimeField('创建时间', auto_now_add=True)
+    update_time = models.DateTimeField('更新时间', auto_now=True)
+#加一个断言，参数传递
 
-class Config(models.Model):
+class config(models.Model):
     class Meta:
         verbose_name = "配置表"
-        db_table = 'Config'
-    style=models.CharField("配置类型",max_length=10)
+        db_table = 'config'
+
+    config_name=models.CharField('配置名称',max_length=80)
+    config_info=models.CharField('配置内容',max_length=80)
     create_time = models.DateTimeField('创建时间', auto_now_add=True)
     update_time = models.DateTimeField('更新时间', auto_now=True)
-
-class Report(models.Model):
-    verbose_name = "测试报告表"
-    db_table = 'Report'
-reportname = models.CharField("报告名称", max_length=10)
-create_time = models.DateTimeField('创建时间', auto_now_add=True)
-update_time = models.DateTimeField('更新时间', auto_now=True)

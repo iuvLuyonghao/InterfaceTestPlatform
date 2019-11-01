@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+{% load static %}
+{%block info%}
+<div class="header_text">
+    模块配置
+</div>
+<div class="form_eir">
+    <form>
+        {% csrf_token %}
+        <input type="text"  placeholder="模块名称..." name="modname">
+        <button>确认添加</button>
+        <script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $.post("/model_setting/",
+                        {
+                            modname:$("input[name=modname]").val(),
+                        },
+                        function(status){
+                            alert("已提交！"+status);
+                        });
+                    return false
+                });
+            });
+        </script>
+    </form>
+</div>
+<div class="form_table">
+    <table>
+        <thead>
+        <tr>
+            <th>模块ID</th>
+            <th>模块名称</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in datas %}
+        <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.host_name}}</td>
+            <td>{{data.create_time}}</td>
+            <td>{{data.update_time}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{%endblock info%}

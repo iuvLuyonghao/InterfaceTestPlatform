@@ -3,77 +3,78 @@ from django.shortcuts import render
 # Create your views here.
 from  django.http import HttpResponse
 from  django.shortcuts import render
-from  .models import  User
-from  AutoTest.controls import  sqlcontrol
+from  AutoTest.controls.sqlcontrol import  sqlcontrol
+from django.shortcuts import render_to_response
 
-sqlcon=sqlcontrol.sqlcontrol()
+
 #首页
 def index(request):
-    # 判断是否是post请求
-    if request.method == 'POST':
-        # 获取到请求参数， username的写法，如果username不存在不会抛异常
-        # password 会抛异常
-        username = request.POST.get('username')
-        password = request.POST['password']
-        print(username,password)
-        # 业务 需求：
-        # users = []
-        # for x in range(0, 3):
-        #     users.append(
-        #         {'username': '%s-%d' % (username, x), 'password': '%s-%d' % (password, x)}
-        #     )
-        #
-        # # 返回给用户  模版中使用到的users就是这里传递进去的
-        # return render(request, template_name='index.html', context={
-        #     'users': users
-        # })
-    return render(request, 'base.html')
-#注册接口
-def register(request):
-    empty_data=False
-    if request.method == 'POST':
-        company = request.POST.get('company')
-        realname = request.POST.get('realname')
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        repassword = request.POST.get('repassword')
-        phone = request.POST.get('phone')
-        email = request.POST.get('email')
-        if password != repassword:
-            print("请验证两次密码是否一致")
-            return render(request, "result.html",context={"msg":"请验证两次密码是否一致"})
-        else:
-            #入库
-            userinfo_list = {'company': company, 'realname': realname, 'username': username, 'password': password, 'phone': phone,
-                             email: email}
-            sqlcon.register(userinfo_list)
-            return render(request,'result.html',context={"msg":"注册成功"})
-    elif request.method == 'GET':
-        return render(request,"register.html")
-
-#登录接口
-def login(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        try:
-            users=User.objects.all()
-        except Exception as e:
-            print(e)
-        for user in users:
-            if user.username==username and user.password==password:
-                print("登录成功")
-                return render(request,'index.html')
-            else:
-                print("登录失败")
-                return render(request, 'login.html')
-    elif request.method== 'GET':
-        return render(request,'login.html')
-
-
-def eircon(request):
+    # if request.method=='GET':
+    return render_to_response("index.html")
+#环境配置
+def eir_setting(request):
     if request.method=='POST':
-        print()
+        eirname=request.POST.get('eirname','')
+        eirurl=request.POST.get('eirurl','')
+        eirlist={'eirname':eirname,'eirurl':eirurl}
+        sqlcontrol(eirlist).insert_eir()
+        datas=sqlcontrol().select_eir()
+        return render(request, 'eir_setting.html', {"datas":datas})
     elif request.method=='GET':
-        return render(request,'index.html')
+        datas=sqlcontrol().select_eir()
+        return render(request, 'eir_setting.html', {"datas":datas})
+
+#项目配置
+def project_setting(request):
+    if request.method=='POST':
+        projectname=request.POST.get('projectname','')
+        eirlist={'projectname':projectname}
+        sqlcontrol(eirlist).insert_project()
+        datas=sqlcontrol().select_project()
+        return render(request, 'project_setting.html', {"datas":datas})
+    elif request.method=='GET':
+        datas=sqlcontrol().select_project()
+        return render(request, 'project_setting.html', {"datas":datas})
+
+#模块配置
+def model_setting(request):
+    if request.method=='POST':
+        modname=request.POST.get('modname','')
+        eirlist={'modname':modname}
+        sqlcontrol(eirlist).insert_project()
+        datas=sqlcontrol().select_project()
+        return render(request, 'model_setting.html', {"datas":datas})
+    elif request.method=='GET':
+        datas=sqlcontrol().select_project()
+        return render(request, 'model_setting.html', {"datas":datas})
+
+
+
+#用例配置
+def case_setting(request):
+    if request.method=='POST':
+        project=request.POST.get('project','')
+        eir=request.POST.get('eir','')
+        model=request.POST.get('model','')
+        casename=request.POST.get('casename','')
+        interface=request.POST.get('interface','')
+        requestmethod=request.POST.get('requestmethod','')
+        requestdata=request.POST.get('requestdata','')
+        datas={'project':project,'eir':eir,'model':model,'casename':casename,'interface':interface,'requestmethon':requestmethod,'requestdata':requestdata}
+        print(datas)
+        sqlcontrol(datas).insert_case()
+        return render(request, 'case_setting.html', {"datas":datas})
+    elif request.method=='GET':
+        datas=sqlcontrol().select_case()
+        return render(request, 'case_setting.html', {"datas":datas})
+
+
+
+
+#系统配置
+def system_setting(request):
+    return  render_to_response("system_setting.html")
+
+
+
 

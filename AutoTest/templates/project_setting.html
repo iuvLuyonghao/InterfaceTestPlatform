@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+{% load static %}
+{% block info %}
+<div class="header_text">
+    项目配置
+</div>
+<div class="form_eir">
+    <form>
+        {% csrf_token %}
+        <input type="text"  placeholder="项目名称..." name="projectname">
+        <button>确认添加</button>
+        <script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    $.post("/project_setting/",
+                        {
+                            projectname:$("input[name=projectname]").val(),
+                        },
+                        function(status){
+                            alert("已提交！" + status);
+                        });
+                    return false
+                });
+            });
+        </script>
+    </form>
+</div>
+<div class="form_table">
+    <table>
+        <thead>
+        <tr>
+            <th>项目ID</th>
+            <th>项目名称</th>
+            <th>创建时间</th>
+            <th>修改时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for data in datas %}
+        <tr>
+            <td>{{data.id}}</td>
+            <td>{{data.project_name}}</td>
+            <td>{{data.create_time}}</td>
+            <td>{{data.update_time}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock info%}

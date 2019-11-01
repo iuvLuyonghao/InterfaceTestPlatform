@@ -1,19 +1,7 @@
-<!DOCTYPE html>
+{% extends "base.html"%}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Rcc接口测试平台</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-这是首页
-    <div>
-        <form action="/" method="POST">
-        {% csrf_token %}
-    环境配置: <input type="text" name="eir" placeholder="环境配置"> <br>
-    <input type="submit" value="提交">
-   </form>
-    </div>
-</body>
-</html>
+{%block info%}
+<div class="header_text">
+    <p>这是主页</p>
+</div>
+{%endblock info%}
